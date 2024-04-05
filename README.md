@@ -2,8 +2,7 @@
 #### Meow Only Look Once 
 
 #### Data 
-- Cats and Dogs : /data/
-- Personal cat data :
+- /data/etc/molo
 
 #### Previous branch 
 * You can add branches within each module below.
