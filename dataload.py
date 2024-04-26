@@ -70,8 +70,6 @@ class CatDataset(Dataset):
 
         crop_img = image[y_start:y_end, x_start:x_end]
 
-        from IPython import embed; embed(colors="neutral")  # XXX DEBUG  # yapf: disable
-
         # Apply transformation
         if self.transform:
             crop_img = self.transform(crop_img)
