@@ -18,12 +18,25 @@ def main(args) :
     print("Train begins...")
     for epoch in range(args.epochs):
         for images in dataloader:
+            '''
+            images : 10 * [4,3,256,256]
+            images.type : list
+            10 : augmented images
+            4 : batch
+            3,256,256 : image
+            '''
             #TODO(jeehyun) below is for debugging. it could be deprecated
             if args.debug :
                 print(f'Batch size : {len(images)}')
-                print(f'Tensor shape: {images.size()}')
+                print(f'Tensor shape: {images[0].size()}')
                 break
-            pass
+
+            print('Images delivered...')
+            images = [torch.stack([item for item in tensor if item is not None]) for tensor in images]
+            if any(tensor.size(0) == 0 for tensor in images):  # Check if any tensor is empty after filtering
+                print('Invalid image is remain after filtering')
+                continue
+
         print(f"Epoch {epoch+1}/{args.epochs} completed.")
 
 if __name__ == "__main__":
