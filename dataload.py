@@ -2,6 +2,7 @@ import torch
 import os
 import pandas as pd
 import numpy as np
+import random
 import cv2
 import torchvision
 from torchvision import transforms
@@ -46,16 +47,57 @@ class CatDataset(Dataset):
         return len(self.filenames) * self.num_augmentations
 
     def __getitem__(self, idx):
+
+        random.shuffle(self.filenames)
+
         file_idx = idx // self.num_augmentations
         img_name = os.path.join(self.directory, self.filenames[file_idx])
         annotation_name = img_name + '.cat'
 
+        n_idx = file_idx + 1 if not file_idx >= len(self.filenames) else 0
+        negative_name = os.path.join(self.directory, self.filenames[n_idx])
+        negative_annotation = negative_name + '.cat'
+
         image = cv2.imread(img_name)
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+
+        n_image = cv2.imread(negative_name)
+        n_image = cv2.cvtColor(n_image, cv2.COLOR_BGR2RGB)
 
          # Load annotations and compute the bounding box
         frame = pd.read_csv(annotation_name, sep =' ', header=None)
         landmarks = (frame.to_numpy()[0][1:-1]).reshape((-1, 2))
+
+        n_frame = pd.read_csv(negative_annotation, sep =' ', header = None)
+        n_landmarks = (n_frame.to_numpy()[0][1:-1]).reshape((-1,2))
+
+        crop_img = self.__crop__(image, landmarks)
+        n_img = self.__crop__(n_image, n_landmarks)
+
+        if crop_img is None or crop_img.shape[0]==0 or crop_img.shape[1]==0:
+            print(f'Invalid image encountered : {img_name}, {crop_img.shape}')
+
+
+        # Apply transformation
+        split = int(self.num_augmentations/2)
+        transformed_images = [self.transform(crop_img) for _ in range(self.num_augmentations)]
+        anchor = transformed_images[0:split]
+        positive = transformed_images[split:]
+        negative = [self.transform(n_img) for _ in range(split)]
+
+
+        #To debug...
+        #for i in range(split) :
+        #    anchor_img = to_pil_image(anchor[i])
+        #    positive_img = to_pil_image(positive[i])
+        #    negative_img = to_pil_image(negative[i])
+        #    anchor_img.save(f'/home/jeehyun/coursework/DL/MeOw-LO/debug/{file_idx}_{idx}_{i}_anchor.png')
+        #    positive_img.save(f'/home/jeehyun/coursework/DL/MeOw-LO/debug/{file_idx}_{idx}_{i}_positive.png')
+        #    negative_img.save(f'/home/jeehyun/coursework/DL/MeOw-LO/debug/{file_idx}_{idx}_{i}_negative.png')
+
+        return anchor, positive, negative
+
+    def __crop__(self, image, landmarks):
 
 
         # Calculate the angle of rotation
@@ -89,21 +131,7 @@ class CatDataset(Dataset):
         y_end = min(rotated_image.shape[0], y + height + 2 * margin)
         crop_img = rotated_image[y:y_end, x:x_end]
 
-        if crop_img is None or crop_img.shape[0]==0 or crop_img.shape[1]==0:
-            print(f'Invalid image encountered : {img_name}, {crop_img.shape}')
-
-
-        # Apply transformation
-        transformed_images = [self.transform(crop_img) for _ in range(self.num_augmentations)]
-
-
-        #To debug...
-        #trans_crop_img = to_pil_image(crop_img)
-        #trans_crop_img.save(f'/home/jeehyun/coursework/DL/MeOw-LO/debug/test_{file_idx}_{idx}_{i}.png')
-
-        return transformed_images
-
-
+        return crop_img
 
 
 
