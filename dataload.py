@@ -47,18 +47,18 @@ class CatDataset(Dataset):
         return len(self.filenames) * self.num_augmentations
 
     def __getitem__(self, idx):
-
         random.shuffle(self.filenames)
 
         file_idx = idx // self.num_augmentations
+        assert 0 <= file_idx < len(self.filenames), f'file_idx {file_idx} is out of range'
+
         img_name = os.path.join(self.directory, self.filenames[file_idx])
         annotation_name = img_name + '.cat'
 
-        n_idx = file_idx + 1 if not file_idx >= len(self.filenames) else 0
-        print(n_idx)
+        n_idx = file_idx + 1 if file_idx + 1 < len(self.filenames) else 0
+        assert 0 <= n_idx < len(self.filenames), f'n_idx {n_idx} is out of range'
+
         negative_name = os.path.join(self.directory, self.filenames[n_idx])
-        #n_idx = (file_idx + 1) % len(self.filenames)
-        #negative_name = os.path.join(self.directory, self.filenames[n_idx])
         negative_annotation = negative_name + '.cat'
 
         image = cv2.imread(img_name)
