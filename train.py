@@ -63,12 +63,13 @@ def main(args):
 
             loss = triplet_loss(anchor_features, positive_features, negative_features)
             total_loss += loss.item()  # Accumulate loss
-            loss.backward()  # Perform backward pass but do not step yet
+            loss.backward()
+            optimizer.step()  # Perform optimization step after each batch
 
-        optimizer.step()  # Perform a single optimization step at the end of the epoch
         epoch_duration = time.time() - start_time
-        print(f"Epoch {epoch+1}/{args.epochs} completed in {epoch_duration:.2f} seconds with total loss: {total_loss:.4f}")
-        wandb.log({"total_loss": total_loss, "epoch": epoch+1})
+        average_loss = total_loss / len(dataloader)  # Calculate the average loss for the epoch
+        print(f"Epoch {epoch+1}/{args.epochs} completed in {epoch_duration:.2f} seconds with average loss: {average_loss:.4f}")
+        wandb.log({"average_loss": average_loss, "epoch": epoch+1})
 
     save_model(model, '/home/hyunseo/molo/model_weights.pth')
     print("Model saved successfully.")
@@ -79,6 +80,6 @@ if __name__ == "__main__":
     parser.add_argument('--directory', type=str, default='/data/etc/molo/CAT_00', help='Directory containing the dataset')
     parser.add_argument('--batch_size', type=int, default=16, help='Batch size for training')
     parser.add_argument('--epochs', type=int, default=10, help='Number of epochs to train')
-    parser.add_argument('--lr', type=int, default=0.0001, help='Learning rate')
+    parser.add_argument('--lr', type=float, default=0.0001, help='Learning rate')  # Adjusted type to float for learning rate
     args = parser.parse_args()
     main(args)

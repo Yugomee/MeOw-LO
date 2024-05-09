@@ -1,0 +1,48 @@
+wandb_version: 1
+
+directory:
+  desc: null
+  value: /data/etc/molo/CAT_00
+batch_size:
+  desc: null
+  value: 16
+epochs:
+  desc: null
+  value: 10
+lr:
+  desc: null
+  value: 0.0001
+_wandb:
+  desc: null
+  value:
+    python_version: 3.12.2
+    cli_version: 0.17.0
+    framework: huggingface
+    huggingface_version: 4.40.2
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1715250846
+    t:
+      1:
+      - 1
+      - 11
+      - 41
+      - 49
+      - 55
+      - 71
+      2:
+      - 1
+      - 11
+      - 41
+      - 49
+      - 55
+      - 71
+      3:
+      - 16
+      - 23
+      4: 3.12.2
+      5: 0.17.0
+      6: 4.40.2
+      8:
+      - 5
+      13: linux-x86_64

@@ -1,0 +1,57 @@
+Registering Data...
+Finish the Loading!
+Train begins...
+Traceback (most recent call last):
+  File "/home/hyunseo/molo/MeOw-LO/train.py", line 84, in <module>
+    main(args)
+  File "/home/hyunseo/molo/MeOw-LO/train.py", line 52, in main
+    for batch in dataloader:
+  File "/home/hyunseo/.miniconda3/envs/diffuse/lib/python3.12/site-packages/torch/utils/data/dataloader.py", line 631, in __next__
+    data = self._next_data()
+           ^^^^^^^^^^^^^^^^^
+  File "/home/hyunseo/.miniconda3/envs/diffuse/lib/python3.12/site-packages/torch/utils/data/dataloader.py", line 675, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hyunseo/.miniconda3/envs/diffuse/lib/python3.12/site-packages/torch/utils/data/_utils/fetch.py", line 51, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+            ~~~~~~~~~~~~^^^^^
+  File "/home/hyunseo/molo/MeOw-LO/dataload.py", line 89, in __getitem__
+    negative = [self.transform(n_img) for _ in range(split)]
+                ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hyunseo/.miniconda3/envs/diffuse/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hyunseo/.miniconda3/envs/diffuse/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hyunseo/.miniconda3/envs/diffuse/lib/python3.12/site-packages/torchvision/transforms/v2/_container.py", line 51, in forward
+    outputs = transform(*inputs)
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/hyunseo/.miniconda3/envs/diffuse/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hyunseo/.miniconda3/envs/diffuse/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hyunseo/.miniconda3/envs/diffuse/lib/python3.12/site-packages/torchvision/transforms/v2/_transform.py", line 172, in forward
+    self._transform(inpt, params) if needs_transform else inpt
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hyunseo/.miniconda3/envs/diffuse/lib/python3.12/site-packages/torchvision/transforms/v2/_geometry.py", line 972, in _transform
+    return self._call_kernel(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/hyunseo/.miniconda3/envs/diffuse/lib/python3.12/site-packages/torchvision/transforms/v2/_transform.py", line 35, in _call_kernel
+    return kernel(inpt, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hyunseo/.miniconda3/envs/diffuse/lib/python3.12/site-packages/torchvision/transforms/v2/functional/_utils.py", line 31, in wrapper
+    output = kernel(inpt.as_subclass(torch.Tensor), *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hyunseo/.miniconda3/envs/diffuse/lib/python3.12/site-packages/torchvision/transforms/v2/functional/_geometry.py", line 1516, in perspective_image
+    return _apply_grid_transform(image, grid, interpolation.value, fill=fill)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hyunseo/.miniconda3/envs/diffuse/lib/python3.12/site-packages/torchvision/transforms/v2/functional/_geometry.py", line 589, in _apply_grid_transform
+    float_img = grid_sample(float_img, grid, mode=mode, padding_mode="zeros", align_corners=False)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hyunseo/.miniconda3/envs/diffuse/lib/python3.12/site-packages/torch/nn/functional.py", line 4324, in grid_sample
+    return torch.grid_sampler(input, grid, mode_enum, padding_mode_enum, align_corners)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
