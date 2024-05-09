@@ -79,6 +79,6 @@ if __name__ == "__main__":
     parser.add_argument('--directory', type=str, default='/data/etc/molo/CAT_00', help='Directory containing the dataset')
     parser.add_argument('--batch_size', type=int, default=16, help='Batch size for training')
     parser.add_argument('--epochs', type=int, default=10, help='Number of epochs to train')
-    parser.add_argument('--lr', type=int, default=10, help='Learning rate')
+    parser.add_argument('--lr', type=int, default=0.0001, help='Learning rate')
     args = parser.parse_args()
     main(args)

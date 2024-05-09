@@ -25,3 +25,4 @@ config: {'directory': '/data/etc/molo/CAT_00', 'batch_size': 16, 'epochs': 10, '
 2024-05-09 19:29:36,736 INFO    MainThread:766014 [wandb_run.py:_redirect():2294] Wrapping output streams.
 2024-05-09 19:29:36,736 INFO    MainThread:766014 [wandb_run.py:_redirect():2319] Redirects installed.
 2024-05-09 19:29:36,737 INFO    MainThread:766014 [wandb_init.py:init():838] run started, returning control to user process
+2024-05-09 19:33:13,431 WARNING MsgRouterThr:766014 [router.py:message_loop():77] message_loop has been closed
