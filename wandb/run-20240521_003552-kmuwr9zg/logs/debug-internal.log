@@ -561,3 +561,58 @@
 2024-05-21 00:53:45,147 DEBUG   HandlerThread:982865 [handler.py:handle_request():158] handle_request: stop_status
 2024-05-21 00:53:45,147 DEBUG   SenderThread:982865 [sender.py:send_request():405] send_request: stop_status
 2024-05-21 00:53:45,639 INFO    Thread-12 :982865 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/jeehyun/coursework/DL/MeOw-LO/wandb/run-20240521_003552-kmuwr9zg/files/output.log
+2024-05-21 00:53:50,419 DEBUG   HandlerThread:982865 [handler.py:handle_request():158] handle_request: status_report
+2024-05-21 00:53:51,642 INFO    Thread-12 :982865 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/jeehyun/coursework/DL/MeOw-LO/wandb/run-20240521_003552-kmuwr9zg/files/output.log
+2024-05-21 00:53:53,397 DEBUG   SenderThread:982865 [sender.py:send():378] send: stats
+2024-05-21 00:53:56,400 DEBUG   HandlerThread:982865 [handler.py:handle_request():158] handle_request: status_report
+2024-05-21 00:53:57,645 INFO    Thread-12 :982865 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/jeehyun/coursework/DL/MeOw-LO/wandb/run-20240521_003552-kmuwr9zg/files/output.log
+2024-05-21 00:54:00,147 DEBUG   HandlerThread:982865 [handler.py:handle_request():158] handle_request: stop_status
+2024-05-21 00:54:00,148 DEBUG   SenderThread:982865 [sender.py:send_request():405] send_request: stop_status
+2024-05-21 00:54:01,452 DEBUG   HandlerThread:982865 [handler.py:handle_request():158] handle_request: status_report
+2024-05-21 00:54:05,648 INFO    Thread-12 :982865 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/jeehyun/coursework/DL/MeOw-LO/wandb/run-20240521_003552-kmuwr9zg/files/output.log
+2024-05-21 00:54:06,607 DEBUG   HandlerThread:982865 [handler.py:handle_request():158] handle_request: status_report
+2024-05-21 00:54:11,608 DEBUG   HandlerThread:982865 [handler.py:handle_request():158] handle_request: status_report
+2024-05-21 00:54:13,650 INFO    Thread-12 :982865 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/jeehyun/coursework/DL/MeOw-LO/wandb/run-20240521_003552-kmuwr9zg/files/output.log
+2024-05-21 00:54:15,148 DEBUG   HandlerThread:982865 [handler.py:handle_request():158] handle_request: stop_status
+2024-05-21 00:54:15,150 DEBUG   SenderThread:982865 [sender.py:send_request():405] send_request: stop_status
+2024-05-21 00:54:17,356 DEBUG   HandlerThread:982865 [handler.py:handle_request():158] handle_request: status_report
+2024-05-21 00:54:19,655 INFO    Thread-12 :982865 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/jeehyun/coursework/DL/MeOw-LO/wandb/run-20240521_003552-kmuwr9zg/files/output.log
+2024-05-21 00:54:22,995 DEBUG   HandlerThread:982865 [handler.py:handle_request():158] handle_request: status_report
+2024-05-21 00:54:23,401 DEBUG   SenderThread:982865 [sender.py:send():378] send: stats
+2024-05-21 00:54:27,657 INFO    Thread-12 :982865 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/jeehyun/coursework/DL/MeOw-LO/wandb/run-20240521_003552-kmuwr9zg/files/output.log
+2024-05-21 00:54:28,730 DEBUG   HandlerThread:982865 [handler.py:handle_request():158] handle_request: status_report
+2024-05-21 00:54:30,147 DEBUG   HandlerThread:982865 [handler.py:handle_request():158] handle_request: stop_status
+2024-05-21 00:54:30,149 DEBUG   SenderThread:982865 [sender.py:send_request():405] send_request: stop_status
+2024-05-21 00:54:33,660 INFO    Thread-12 :982865 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/jeehyun/coursework/DL/MeOw-LO/wandb/run-20240521_003552-kmuwr9zg/files/output.log
+2024-05-21 00:54:34,091 DEBUG   HandlerThread:982865 [handler.py:handle_request():158] handle_request: status_report
+2024-05-21 00:54:39,092 DEBUG   HandlerThread:982865 [handler.py:handle_request():158] handle_request: status_report
+2024-05-21 00:54:41,663 INFO    Thread-12 :982865 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/jeehyun/coursework/DL/MeOw-LO/wandb/run-20240521_003552-kmuwr9zg/files/output.log
+2024-05-21 00:54:44,155 DEBUG   HandlerThread:982865 [handler.py:handle_request():158] handle_request: status_report
+2024-05-21 00:54:45,148 DEBUG   HandlerThread:982865 [handler.py:handle_request():158] handle_request: stop_status
+2024-05-21 00:54:45,149 DEBUG   SenderThread:982865 [sender.py:send_request():405] send_request: stop_status
+2024-05-21 00:54:49,527 DEBUG   HandlerThread:982865 [handler.py:handle_request():158] handle_request: status_report
+2024-05-21 00:54:49,668 INFO    Thread-12 :982865 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/jeehyun/coursework/DL/MeOw-LO/wandb/run-20240521_003552-kmuwr9zg/files/output.log
+2024-05-21 00:54:53,406 DEBUG   SenderThread:982865 [sender.py:send():378] send: stats
+2024-05-21 00:54:55,395 DEBUG   HandlerThread:982865 [handler.py:handle_request():158] handle_request: status_report
+2024-05-21 00:54:55,671 INFO    Thread-12 :982865 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/jeehyun/coursework/DL/MeOw-LO/wandb/run-20240521_003552-kmuwr9zg/files/output.log
+2024-05-21 00:55:00,148 DEBUG   HandlerThread:982865 [handler.py:handle_request():158] handle_request: stop_status
+2024-05-21 00:55:00,149 DEBUG   SenderThread:982865 [sender.py:send_request():405] send_request: stop_status
+2024-05-21 00:55:01,332 DEBUG   HandlerThread:982865 [handler.py:handle_request():158] handle_request: status_report
+2024-05-21 00:55:01,674 INFO    Thread-12 :982865 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/jeehyun/coursework/DL/MeOw-LO/wandb/run-20240521_003552-kmuwr9zg/files/output.log
+2024-05-21 00:55:06,379 DEBUG   HandlerThread:982865 [handler.py:handle_request():158] handle_request: status_report
+2024-05-21 00:55:09,677 INFO    Thread-12 :982865 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/jeehyun/coursework/DL/MeOw-LO/wandb/run-20240521_003552-kmuwr9zg/files/output.log
+2024-05-21 00:55:12,172 DEBUG   HandlerThread:982865 [handler.py:handle_request():158] handle_request: status_report
+2024-05-21 00:55:15,148 DEBUG   HandlerThread:982865 [handler.py:handle_request():158] handle_request: stop_status
+2024-05-21 00:55:15,149 DEBUG   SenderThread:982865 [sender.py:send_request():405] send_request: stop_status
+2024-05-21 00:55:17,380 DEBUG   HandlerThread:982865 [handler.py:handle_request():158] handle_request: status_report
+2024-05-21 00:55:19,681 INFO    Thread-12 :982865 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/jeehyun/coursework/DL/MeOw-LO/wandb/run-20240521_003552-kmuwr9zg/files/output.log
+2024-05-21 00:55:22,559 DEBUG   HandlerThread:982865 [handler.py:handle_request():158] handle_request: status_report
+2024-05-21 00:55:23,409 DEBUG   SenderThread:982865 [sender.py:send():378] send: stats
+2024-05-21 00:55:25,684 INFO    Thread-12 :982865 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/jeehyun/coursework/DL/MeOw-LO/wandb/run-20240521_003552-kmuwr9zg/files/output.log
+2024-05-21 00:55:28,335 DEBUG   HandlerThread:982865 [handler.py:handle_request():158] handle_request: status_report
+2024-05-21 00:55:30,148 DEBUG   HandlerThread:982865 [handler.py:handle_request():158] handle_request: stop_status
+2024-05-21 00:55:30,149 DEBUG   SenderThread:982865 [sender.py:send_request():405] send_request: stop_status
+2024-05-21 00:55:33,688 INFO    Thread-12 :982865 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/jeehyun/coursework/DL/MeOw-LO/wandb/run-20240521_003552-kmuwr9zg/files/output.log
+2024-05-21 00:55:34,211 DEBUG   HandlerThread:982865 [handler.py:handle_request():158] handle_request: status_report
+2024-05-21 00:55:39,212 DEBUG   HandlerThread:982865 [handler.py:handle_request():158] handle_request: status_report
+2024-05-21 00:55:41,691 INFO    Thread-12 :982865 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/jeehyun/coursework/DL/MeOw-LO/wandb/run-20240521_003552-kmuwr9zg/files/output.log
