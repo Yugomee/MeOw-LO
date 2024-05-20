@@ -1,4 +1,10 @@
 output/output_model.pt
+<<<<<<< HEAD
 wandb
 notebooks
 output/output_model.pt
+||||||| constructed merge base
+=======
+wandb
+notebooks
+>>>>>>> Update .gitignore to stop tracking certain files/folders
