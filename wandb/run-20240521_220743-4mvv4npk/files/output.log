@@ -1,0 +1,20 @@
+Registering Data...
+Finish the Loading!
+Downloading: "https://download.pytorch.org/models/resnet50-0676ba61.pth" to /home/hyunseo/.cache/torch/hub/checkpoints/resnet50-0676ba61.pth
+
+
+
+
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████| 97.8M/97.8M [00:08<00:00, 11.9MB/s]
+Traceback (most recent call last):
+  File "/home/hyunseo/molo/MeOw-LO/train_resnet.py", line 150, in <module>
+    main(args)
+  File "/home/hyunseo/molo/MeOw-LO/train_resnet.py", line 103, in main
+    model = Encoder(pretrained=True, embed_dim=128).to(device)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hyunseo/molo/MeOw-LO/train_resnet.py", line 82, in __init__
+    self.cls_head = nn.Linear(self.backbone.fc.in_features, embed_dim)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hyunseo/.miniconda3/envs/diffuse/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1688, in __getattr__
+    raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
+AttributeError: 'Identity' object has no attribute 'in_features'

@@ -56,10 +56,12 @@ def main(args):
             anchor_tensors = [torch.stack([img.to(device) for img in sublist]) for sublist in anchors]
             positive_tensors = [torch.stack([img.to(device) for img in sublist]) for sublist in positives]
             negative_tensors = [torch.stack([img.to(device) for img in sublist]) for sublist in negatives]
+            #print(anchor_tensors[0].shape)
 
             anchor_features = torch.cat([model(anchor) for anchor in anchor_tensors])
             positive_features = torch.cat([model(positive) for positive in positive_tensors])
             negative_features = torch.cat([model(negative) for negative in negative_tensors])
+            #print(anchor_features.shape)
 
             loss = triplet_loss(anchor_features, positive_features, negative_features)
             total_loss += loss.item()  # Accumulate loss
