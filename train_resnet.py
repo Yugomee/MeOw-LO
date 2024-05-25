@@ -102,7 +102,7 @@ def main(args):
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = Encoder(pretrained=True, embed_dim=128).to(device)
-    triplet_loss = TripletMarginLoss(margin=1.0, p=2)
+    triplet_loss = TripletMarginLoss(margin=args.margin, p=2)
     optimizer = AdamW(model.parameters(), lr=args.lr)
 
     model.train()
@@ -146,6 +146,7 @@ if __name__ == "__main__":
     parser.add_argument('--batch_size', type=int, default=16, help='Batch size for training')
     parser.add_argument('--epochs', type=int, default=10, help='Number of epochs to train')
     parser.add_argument('--lr', type=float, default=0.0001, help='Learning rate')  # Adjusted type to float for learning rate
+    parser.add_argument('--margin', type=float, default=3, help='Margin')  # Adjusted type to float for learning rate
     parser.add_argument('--output_dir', type=str)
     args = parser.parse_args()
     main(args)
