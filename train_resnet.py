@@ -48,26 +48,31 @@ def extract_and_average_features(augmentations, model, device):
 
 def validate(model, dataloader, device):
     model.eval()  # Set model to evaluation mode
-    similarities = []
+    positive_similarities = []
+    negative_similarities = []
+
     with torch.no_grad():  # No gradients needed
-        for batch in dataloader:
+        for batch in tqdm(dataloader, desc = 'Validation process'):
             anchors, positives, negatives = batch
 
             # Extract features without gradient calculation
             anchor_features = extract_and_average_features(anchors, model, device)
             positive_features = extract_and_average_features(positives, model, device)
             negative_features = extract_and_average_features(negatives, model, device)
-
+            n_anchor_features = torch.nn.functional.normalize(anchor_features, p=2, dim=1)
+            n_positive_features = torch.nn.functional.normalize(positive_features, p=2, dim=1)
+            n_negative_features = torch.nn.functional.normalize(negative_features, p=2, dim=1)
             # Compute cosine similarity
-            pos_similarity = cosine_similarity(anchor_features, positive_features)
-            neg_similarity = cosine_similarity(anchor_features, negative_features)
+            pos_similarity = cosine_similarity(n_anchor_features, n_positive_features)
+            neg_similarity = cosine_similarity(n_anchor_features, n_negative_features)
 
-            # Append to list and later calculate average
-            similarities.append((pos_similarity.mean().item(), neg_similarity.mean().item()))
+             # Collect data for analysis
+            positive_similarities.extend(pos_similarity.tolist())
+            negative_similarities.extend(neg_similarity.tolist())
 
-    # Calculate average similarity scores across all batches
-    pos_sim_avg = sum(pos[0] for pos in similarities) / len(similarities)
-    neg_sim_avg = sum(neg[1] for neg in similarities) / len(similarities)
+    # Compute averages of collected data
+    pos_sim_avg = sum(positive_similarities) / len(positive_similarities) if positive_similarities else 0
+    neg_sim_avg = sum(negative_similarities) / len(negative_similarities) if negative_similarities else 0
 
     return pos_sim_avg, neg_sim_avg
 
@@ -97,7 +102,7 @@ def main(args):
     dataloader = DataLoader(dataset, batch_size=args.batch_size, shuffle=True)
 
     val_dataset = CatDataset(directory=args.test_directory)
-    val_dataloader = DataLoader(val_dataset, batch_size = args.batch_size, shuffle=True)
+    val_dataloader = DataLoader(val_dataset, batch_size=args.batch_size, shuffle=True)
     print("Finish the Loading!")
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -112,16 +117,24 @@ def main(args):
         for batch in tqdm(dataloader, desc="Training Batch", leave=False):
             optimizer.zero_grad()
             anchors, positives, negatives = batch
-
+            #print(f"Feature extracting starts at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
             anchor_features = extract_and_average_features(anchors, model, device)
             positive_features = extract_and_average_features(positives, model, device)
             negative_features = extract_and_average_features(negatives, model, device)
+            n_anchor_features = torch.nn.functional.normalize(anchor_features, p=2, dim=1)
+            n_positive_features = torch.nn.functional.normalize(positive_features, p=2, dim=1)
+            n_negative_features = torch.nn.functional.normalize(negative_features, p=2, dim=1)
+            #print(f"Feature extracting ends..Loss calculates starts at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+            loss = triplet_loss(n_anchor_features, n_positive_features, n_negative_features)
 
-            loss = triplet_loss(anchor_features, positive_features, negative_features)
+            #print(f"Loss calculates ends at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+
             loss.backward()
             optimizer.step()
 
             total_loss += loss.item()  # Accumulate loss
+
+            #print(f"Loss: {loss.item():.4f}, Time : {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
         print(f"Epoch {epoch+1}/{args.epochs} completed at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}.")
         avg_loss = total_loss / len(dataloader)
@@ -132,9 +145,9 @@ def main(args):
         pos_sim, neg_sim = validate(model, val_dataloader, device)
         print(f"Average Positive Similarity: {pos_sim:.4f}, Average Negative Similarity: {neg_sim:.4f}")
         wandb.log({"positive similarity in validation": pos_sim, "epoch": epoch +1})
-        wandb.log({"negative similarity in validation": neg_sim, "epoch": epoch +1})
-
-    torch.save(model, f'{args.output_dir}/output_model_{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}.pt')
+        wandb.log({"nositive similarity in validation": neg_sim, "epoch": epoch +1})
+    
+    torch.save(model, f'{args.output_dir}/output_model_{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}.pt')
 
     print("Model saved successfully.")
     wandb.finish()
