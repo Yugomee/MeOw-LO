@@ -16,7 +16,7 @@ def get_transform():
         v2.ToImage(),
         v2.RandomHorizontalFlip(p=0.5),
         v2.RandomRotation(degrees=(0,45)),
-        v2.RandomPerspective(distortion_scale=0.6, p=0.5),
+        #v2.RandomPerspective(distortion_scale=0.6, p=0.5),
         v2.Resize((224,224)),
         v2.ToDtype(torch.float32, scale=True)
     ])
